@@ -181,6 +181,8 @@ M.general = {
     },
     ["<C-Space>"] = { "_", "Type underscore" },
     ["<S-Space>"] = { "-", "Type dash" },
+
+    ["<C-p>"] = { '<C-r>"', "Paste in insert mode" },
   },
   -- x = {
   --   ["jk"] = { "<CR>", "Enter in ex command" },

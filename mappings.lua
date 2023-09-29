@@ -29,7 +29,6 @@ local function CloseAllExceptCurrent()
 end
 
 
-
 -- keymaps
 M.disabled = {
 --   t = {
@@ -146,6 +145,9 @@ M.general = {
       end,
       "Close all buffers except current"
     },
+
+    -- Edit this so it will ignore certain commands (nvim, clear, etc.)
+    ["<Bar>"] = { ":NvTermFloat<cr><up><cr>", "Run last command run in terminal" },
   },
   v = {
     -- ["K"] = { "6k", "move up more" },

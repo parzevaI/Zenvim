@@ -91,7 +91,7 @@ M.general = {
     --
     ["<leader>w"] = { "<cmd>w<CR>", "Save all"},
     ["<leader>q"] = { "<cmd>q<CR>", "Quick quit"},
-    ["<leader>Q"] = { "<cmd>q!<CR>", "Quick force quit"},
+    ["<leader>Q"] = { "<cmd>q!<CR>", "Quick force quit" },
     ["<leader>a"] = { "<cmd>qa<CR>", "Quick quit all"},
     ["<leader>A"] = { "<cmd>qa!<CR>", "Quick force quit all"},
 
@@ -146,8 +146,13 @@ M.general = {
       "Close all buffers except current"
     },
 
-    -- Edit this so it will ignore certain commands (nvim, clear, etc.)
-    ["<Bar>"] = { ":NvTermFloat<cr><up><cr>", "Run last command run in terminal" },
+    -- TreeSJ
+    ["E"] = {
+      function()
+        require('treesj').toggle()
+      end,
+      "Toggle block collapse"
+    },
   },
   v = {
     -- ["K"] = { "6k", "move up more" },
@@ -334,6 +339,9 @@ M.nvterm = {
   plugin = true,
 
   t = {
+    -- Edit this so it will ignore certain commands (nvim, clear, etc.)
+    ["<Bar>"] = { '<up><cr>', "Run last command run in terminal" },
+    
     -- toggle in terminal mode
     ["ƒ"] = {
       function()
@@ -365,6 +373,9 @@ M.nvterm = {
   },
 
   n = {
+    -- Edit this so it will ignore certain commands (nvim, clear, etc.)
+    ["<Bar>"] = { ':lua require("nvterm.terminal").toggle "float"<cr><up><cr>', "Open terminal and run last command" },
+
     -- toggle in normal mode
     ["ƒ"] = {
       function()

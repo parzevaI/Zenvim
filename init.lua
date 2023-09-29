@@ -14,12 +14,4 @@ opt.wrap = false
 
 vim.cmd "let g:sneak#s_next = 1"
 
-vim.api.nvim_create_user_command(
-    'NvTermFloat',
-    function()
-      require("nvterm.terminal").toggle "float"
-    end,
-    { nargs = 0 }
-)
-
 -- require('luasnip').filetype_extend("svelte", {"javascript", "html", "css"})

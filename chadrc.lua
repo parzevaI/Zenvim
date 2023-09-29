@@ -13,16 +13,39 @@ M.ui = {
   hl_override = highlights.override,
   hl_add = highlights.add,
 
-  nvdash = {
-    load_on_startup = true,
-  },
-
   cmp = {
     style = "atom_colored",
   },
 
   statusline ={
     theme = "minimal",
+  },
+
+
+  -- nvdash (dashboard)
+  nvdash = {
+    load_on_startup = true,
+
+    header = {
+      "           ▄ ▄                   ",
+      "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ",
+      "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ",
+      "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ",
+      "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ",
+      "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄",
+      "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █",
+      "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █",
+      "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ",
+    },
+
+    buttons = {
+      { "  Find File", "Space     ", "Telescope find_files" },
+      { "󰈚  Recent Files", "Leader f o", "Telescope oldfiles" },
+      { "󰈭  Find Word", "Leader f w", "Telescope live_grep" },
+      { "  Bookmarks", "Leader m a", "Telescope marks" },
+      { "  Themes", "Leader t H", "Telescope themes" },
+      { "  Mappings", "Leader c h", "NvCheatsheet" },
+    },
   },
 }
 

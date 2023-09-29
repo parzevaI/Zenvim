@@ -17,6 +17,17 @@ local function move_or_create_win(key)
   end
 end
 
+local function CloseAllExceptCurrent()
+	local current_buf = vim.api.nvim_get_current_buf()
+	local all_bufs = vim.api.nvim_list_bufs()
+
+	for _, buf in ipairs(all_bufs) do
+		if buf ~= current_buf then
+			vim.api.nvim_buf_delete(buf, { force = true })
+		end
+	end
+end
+
 
 
 -- keymaps
@@ -127,6 +138,14 @@ M.general = {
     -- ["dif"] = { "v$o:'<,'>s/\v(.*\\().*\\)/\1)/", "Delete in function" },
     -- ["daf"] = { "", "Delete all of function" },
     --
+    ["<C-n>"] = { ":e ", "New File" },
+
+    ["<leader>cx"] = {
+      function()
+        CloseAllExceptCurrent()
+      end,
+      "Close all buffers except current"
+    },
   },
   v = {
     -- ["K"] = { "6k", "move up more" },
@@ -155,6 +174,9 @@ M.general = {
     ["<C-Space>"] = { "_", "Type underscore" },
     ["<S-Space>"] = { "-", "Type dash" },
   },
+  x = {
+    ["jk"] = { "<CR>", "Enter in ex command" },
+  },
 }
 
 M.edit = {
@@ -174,8 +196,11 @@ M.edit = {
 M.commands = {
   n = {
     ['<leader>yg'] = { ":%g/\\v", 'Global' },
+    ['B'] = { ":%g/\\v", 'Global' },
     ['<leader>yv'] = { ":%v/\\v", 'Converse' },
     ['<leader>ys'] = { ":%s/\\v", 'Substitute' },
+    ['b'] = { ":%s/\\v", 'Substitute' },
+    ['<leader>yw'] = { ":%s/<c-r><c-w>//g<left><left>", 'Substitute word under cursor' },
 
     ['<leader>ya'] = { ":arg ", 'View and edit arglist' },
     ['<leader>yG'] = { ":argdo %g/", 'Arglist global' },
@@ -188,8 +213,10 @@ M.commands = {
   },
   v = {
     ['<leader>yg'] = { ":g/\\v", 'Global' },
+    ['B'] = { ":g/\\v", 'Global' },
     ['<leader>yv'] = { ":v/\\v", 'Converse' },
-    ['<leader>ys'] = { ":s/\\v", 'Substitute' },
+    ['b'] = { ":s/\\v", 'Substitute' },
+    ['<leader>yw'] = { ":%s/'<,'>/", 'Substitute word under cursor' },
   },
 }
 

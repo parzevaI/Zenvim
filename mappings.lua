@@ -67,6 +67,7 @@ M.disabled = {
 
   v = {
     ["<leader>/"] = "",
+    ["j"] = "",
   },
 
   t = {
@@ -181,9 +182,9 @@ M.general = {
     ["<C-Space>"] = { "_", "Type underscore" },
     ["<S-Space>"] = { "-", "Type dash" },
   },
-  x = {
-    ["jk"] = { "<CR>", "Enter in ex command" },
-  },
+  -- x = {
+  --   ["jk"] = { "<CR>", "Enter in ex command" },
+  -- },
 }
 
 M.edit = {

@@ -179,8 +179,8 @@ M.general = {
       end,
       "Flash"
     },
-    ["<C-Space>"] = { "_", "Type underscore" },
-    ["<S-Space>"] = { "-", "Type dash" },
+    ["<C-Space>"] = { "-", "Type underscore" },
+    ["<S-Space>"] = { "_", "Type dash" },
 
     ["<C-p>"] = { '<C-r>"', "Paste in insert mode" },
   },

@@ -133,6 +133,7 @@ M.general = {
     ["<S-CR>"] = { "ggVG", "Select all" },
 
     ["r<S-Space>"] = { "r_", "Underscore shortcut in single character replace" },
+    ["r<C-p>"] = { "vp", "Underscore shortcut in single character replace" },
 
     ["U"] = { "<C-r>", "Redo" },
     -- ["dif"] = { "v$o:'<,'>s/\v(.*\\().*\\)/\1)/", "Delete in function" },
@@ -148,12 +149,7 @@ M.general = {
     },
 
     -- TreeSJ
-    ["E"] = {
-      function()
-        require('treesj').toggle()
-      end,
-      "Toggle block collapse"
-    },
+    ["E"] = { "<cmd>TSJToggle<CR>", "Toggle block collapse" },
   },
   v = {
     -- ["K"] = { "6k", "move up more" },
@@ -170,8 +166,9 @@ M.general = {
 
   },
   i = {
-    ["JK"] = { "<esc>", "Escape with capslock" },
-    ["JJ"] = { "<esc>", "Escape with capslock" },
+    -- Can't type capital J in insert
+    -- ["JK"] = { "<esc>", "Escape with capslock" },
+    -- ["JJ"] = { "<esc>", "Escape with capslock" },
 
     ["<c-s>"] = {
       function()
@@ -258,7 +255,7 @@ M.neotree = {
 
 M.telescope = {
   n = {
-    ["<space>"] = { "<cmd> Telescope find_files <CR>", "Find files" },
+    ["<Space>"] = { "<cmd> Telescope find_files <CR>", "Find files" },
     ["<leader>fT"] = { "<cmd>Telescope themes<CR>", "Find themes"},
     ["<leader>fc"] = { "<cmd>Telescope find_files search_dirs=~/.config/nvim/lua/custom/.<CR>", "Find config"},
     ["<leader>fW"] = { "<cmd>Telescope live_grep search_dirs=~<CR>", "BIG grep"},

@@ -108,10 +108,13 @@ local plugins = {
 
   {
     'Wansmer/treesj',
-    keys = { '<space>m', '<space>j', '<space>s' },
+    -- keys = { 'E' },
+    event = "VeryLazy",
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
-      require('treesj').setup({--[[ your config ]]})
+      require('treesj').setup({
+        use_default_keymaps = false,
+      })
     end,
   },
 
@@ -167,13 +170,13 @@ local plugins = {
   },
 
 
-  {
-    "themaxmarchuk/tailwindcss-colors.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("tailwindcss-colors").setup()
-    end,
-  },
+  -- {
+  --   "themaxmarchuk/tailwindcss-colors.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("tailwindcss-colors").setup()
+  --   end,
+  -- },
 
 
   {
@@ -200,7 +203,7 @@ local plugins = {
 
   {
     "michaelb/sniprun",
-    event = "BufEnter",
+    event = "VeryLazy",
     build = "sh ./install.sh",
   },
 
@@ -406,13 +409,13 @@ local plugins = {
     end,
   },
 
-  {
-    "karb94/neoscroll.nvim",
-    event = "BufEnter",
-    config = function()
-      require("neoscroll").setup()
-    end,
-  },
+  -- {
+  --   "karb94/neoscroll.nvim",
+  --   event = "BufEnter",
+  --   config = function()
+  --     require("neoscroll").setup()
+  --   end,
+  -- },
 
   -- {
   --   "justinmk/vim-sneak",

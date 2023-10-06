@@ -236,6 +236,13 @@ M.general = {
   -- },
 }
 
+M.macros = {
+  n = {
+    ["<leader>,"] = { "qz", "Make macro" },
+    [","] = { "@z", "Run macro" },
+  },
+}
+
 M.edit = {
   n = {
     -- propterty object

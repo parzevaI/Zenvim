@@ -35,6 +35,29 @@ local terminal = {
   started = false,
 }
 
+local commands = {
+  python = function(filepath) return "python3 "..filepath end,
+  javascript = function(filepath) return "node "..filepath end,
+  html = function(filepath) return "open "..filepath end,
+  rust = function(filepath)
+    local filename = string.match(filepath, "[^/]+$"):sub(1,-4)
+    local filedir = filepath:sub(1, filepath:match(".+()/"))
+    if filename == "main" then
+      return "(cd "..filedir.." && cargo run)"
+    end
+    return "(cd "..filedir.." && rustc "..filepath.." && ./"..filename..")"
+  end,
+  lua = function(filepath) return "lua "..filepath end,
+  java = function(filepath)
+    local filename = string.match(filepath, "[^/]+$"):sub(1,-6)
+    local filedir = filepath:sub(1, filepath:match(".+()/"))
+    return "(cd "..filedir.." && javac "..filepath.." && java "..filename..")"
+  end,
+  svelte = function(filepath)
+    local filedir = filepath:sub(1, filepath:match(".+()/"))
+    return "(cd "..filedir.." && npmrd)"
+  end,
+}
 
 function terminal.toggle()
   terminal.started = true
@@ -46,12 +69,13 @@ function terminal.runfile()
     require("nvterm.terminal").new "float" -- opens
     terminal:toggle() -- closes
   end
-  if vim.filetype.match({ buf = 0 }) == "python" then
-    require("nvterm.terminal").send("python3 " .. vim.api.nvim_buf_get_name(0), 'float')
-  end
+
+  local filetype = vim.filetype.match({ buf = 0 })
+  local filepath = vim.api.nvim_buf_get_name(0)
+  print(filetype)
+  require("nvterm.terminal").send(commands[filetype](filepath), 'float')
   -- terminal:toggle() -- opens
 end
-
 
 
 
@@ -367,7 +391,7 @@ M.nvterm = {
   t = {
     ["<Bar>"] = {
       function ()
-        vim.cmd("bp")
+        vim.cmd("b#")
         terminal:runfile()
         vim.cmd("b#")
         vim.cmd("call feedkeys('i')")

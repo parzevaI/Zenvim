@@ -234,6 +234,9 @@ M.general = {
   -- x = {
   --   ["jk"] = { "<CR>", "Enter in ex command" },
   -- },
+  c = {
+    ["jk"] = { "<CR>", "Execute command" },
+  },
 }
 
 M.macros = {

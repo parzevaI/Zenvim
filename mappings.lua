@@ -29,6 +29,32 @@ local function CloseAllExceptCurrent()
 end
 
 
+
+
+local terminal = {
+  started = false,
+}
+
+
+function terminal.toggle()
+  terminal.started = true
+  require("nvterm.terminal").toggle "float"
+end
+
+function terminal.runfile()
+  if terminal.started == false then
+    require("nvterm.terminal").new "float" -- opens
+    terminal:toggle() -- closes
+  end
+  if vim.filetype.match({ buf = 0 }) == "python" then
+    require("nvterm.terminal").send("python3 " .. vim.api.nvim_buf_get_name(0), 'float')
+  end
+  -- terminal:toggle() -- opens
+end
+
+
+
+
 -- keymaps
 M.disabled = {
 --   t = {
@@ -339,9 +365,16 @@ M.nvterm = {
   plugin = true,
 
   t = {
-    -- Edit this so it will ignore certain commands (nvim, clear, etc.)
-    ["<Bar>"] = { '<up><cr>', "Run last command run in terminal" },
-    
+    ["<Bar>"] = {
+      function ()
+        vim.cmd("bp")
+        terminal:runfile()
+        vim.cmd("b#")
+        vim.cmd("call feedkeys('i')")
+      end,
+      "Run file"
+    },
+
     -- toggle in terminal mode
     ["ƒ"] = {
       function()
@@ -350,7 +383,7 @@ M.nvterm = {
     },
     ["\\"] = {
       function()
-        require("nvterm.terminal").toggle "float"
+        terminal:toggle()
       end,
     },
     ["<esc>"] = {
@@ -373,8 +406,14 @@ M.nvterm = {
   },
 
   n = {
-    -- Edit this so it will ignore certain commands (nvim, clear, etc.)
-    ["<Bar>"] = { ':lua require("nvterm.terminal").toggle "float"<cr><up><cr>', "Open terminal and run last command" },
+    -- ["<Bar>"] = { ':lua require("nvterm.terminal").toggle "float"<cr><up><cr>', "Open terminal and run last command" },
+    ["<Bar>"] = {
+      function ()
+        terminal:runfile()
+        terminal:toggle()
+      end,
+      "Run file",
+    },
 
     -- toggle in normal mode
     ["ƒ"] = {
@@ -384,7 +423,7 @@ M.nvterm = {
     },
     ["\\"] = {
       function()
-        require("nvterm.terminal").toggle "float"
+        terminal:toggle()
       end,
     },
 

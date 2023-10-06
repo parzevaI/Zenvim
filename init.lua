@@ -14,4 +14,5 @@ opt.wrap = false
 
 vim.cmd "let g:sneak#s_next = 1"
 
+
 -- require('luasnip').filetype_extend("svelte", {"javascript", "html", "css"})

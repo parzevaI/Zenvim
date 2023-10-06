@@ -104,6 +104,9 @@ local plugins = {
   --       },
   --     })
   --   end,
+  -- {
+  --   "NvChad/nvterm",
+  --   lazy = false
   -- },
 
   {

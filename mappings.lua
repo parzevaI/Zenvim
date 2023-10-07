@@ -42,7 +42,8 @@ local commands = {
   rust = function(filepath)
     local filename = string.match(filepath, "[^/]+$"):sub(1,-4)
     local filedir = filepath:sub(1, filepath:match(".+()/"))
-    if filename == "main" then
+    print(filedir)
+    if string.find(filedir, "/src/") then
       return "(cd "..filedir.." && cargo run)"
     end
     return "(cd "..filedir.." && rustc "..filepath.." && ./"..filename..")"

@@ -7,6 +7,8 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
+local util = require "lspconfig/util"
+
 -- if you just want default config for the servers then put them in a table
 local servers = { "html", "cssls", "tsserver", "clangd" }
 
@@ -51,7 +53,15 @@ lspconfig.html.setup {
 lspconfig.rust_analyzer.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = {"rust"}
+  filetypes = {"rust"},
+  root_dir = util.root_pattern("Cargo.toml"),
+  settings = {
+    ['rust-analyzer'] = {
+      cargo = {
+        allFeatures = true,
+      },
+    },
+  },
 }
 
 -- lspconfig.jdlts.setup {

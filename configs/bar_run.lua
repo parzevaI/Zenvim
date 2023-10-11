@@ -6,11 +6,11 @@ local terminal = {
     html = function(filepath) return "open "..filepath end,
 
     rust = function(filepath)
-      local filename = string.match(filepath, "[^/]+$"):sub(1,-4) -- main
-      local filedir = filepath:sub(1, filepath:match(".+()/")) -- /Users/agoni/Documents/CompSci/test/check/src/
+      local filename = string.match(filepath, "[^/]+$"):sub(1,-4)
+      local filedir = filepath:sub(1, filepath:match(".+()/"))
       local dir_to_src = filedir:match("(.-)/src")
       if dir_to_src then
-        local handle = io.popen("(cd "..dir_to_src.." && ls)") -- /Users/agoni/Documents/CompSci/test/check
+        local handle = io.popen("(cd "..dir_to_src.." && ls)")
         local is_cargo = string.find(handle:read("*a"), "Cargo.toml")
         handle:close()
 

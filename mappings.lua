@@ -1,6 +1,7 @@
 ---@type MappingsTable
 local M = {}
 
+
 local function move_or_create_win(key)
   local fn = vim.fn
   local curr_win = fn.winnr()
@@ -17,6 +18,7 @@ local function move_or_create_win(key)
   end
 end
 
+
 local function CloseAllExceptCurrent()
 	local current_buf = vim.api.nvim_get_current_buf()
 	local all_bufs = vim.api.nvim_list_bufs()
@@ -29,63 +31,8 @@ local function CloseAllExceptCurrent()
 end
 
 
+local bar_run = require("custom.configs.bar_run")
 
-
-local terminal = {
-  started = false,
-}
-
-local commands = {
-  python = function(filepath) return "python3 "..filepath end,
-  javascript = function(filepath) return "node "..filepath end,
-  html = function(filepath) return "open "..filepath end,
-
-  rust = function(filepath)
-    local filename = string.match(filepath, "[^/]+$"):sub(1,-4) -- main
-    local filedir = filepath:sub(1, filepath:match(".+()/")) -- /Users/agoni/Documents/CompSci/test/check/src/
-    local dir_to_src = filedir:match("(.-)/src")
-    if dir_to_src then
-      local handle = io.popen("(cd "..dir_to_src.." && ls)") -- /Users/agoni/Documents/CompSci/test/check
-      local is_cargo = string.find(handle:read("*a"), "Cargo.toml")
-      handle:close()
-
-      if is_cargo then
-        return "(cd "..filedir.." && cargo run)"
-      end
-    end
-
-    return "(cd "..filedir.." && rustc "..filepath.." && ./"..filename..")"
-  end,
-
-  lua = function(filepath) return "lua "..filepath end,
-  java = function(filepath)
-    local filename = string.match(filepath, "[^/]+$"):sub(1,-6)
-    local filedir = filepath:sub(1, filepath:match(".+()/"))
-    return "(cd "..filedir.." && javac "..filepath.." && java "..filename..")"
-  end,
-  svelte = function(filepath)
-    local filedir = filepath:sub(1, filepath:match(".+()/"))
-    return "(cd "..filedir.." && npm run dev)"
-  end,
-}
-
-function terminal.toggle()
-  terminal.started = true
-  require("nvterm.terminal").toggle "float"
-end
-
-function terminal.runfile()
-  if terminal.started == false then
-    require("nvterm.terminal").new "float" -- opens
-    terminal:toggle() -- closes
-  end
-
-  local filetype = vim.filetype.match({ buf = 0 })
-  local filepath = vim.api.nvim_buf_get_name(0)
-  print(filetype)
-  require("nvterm.terminal").send(commands[filetype](filepath), 'float')
-  -- terminal:toggle() -- opens
-end
 
 
 
@@ -412,7 +359,7 @@ M.nvterm = {
     ["<Bar>"] = {
       function ()
         vim.cmd("b#")
-        terminal:runfile()
+        bar_run:runfile()
         vim.cmd("b#")
         vim.cmd("call feedkeys('i')")
       end,
@@ -427,7 +374,7 @@ M.nvterm = {
     },
     ["\\"] = {
       function()
-        terminal:toggle()
+        bar_run:toggle()
       end,
     },
     ["<esc>"] = {
@@ -453,8 +400,8 @@ M.nvterm = {
     -- ["<Bar>"] = { ':lua require("nvterm.terminal").toggle "float"<cr><up><cr>', "Open terminal and run last command" },
     ["<Bar>"] = {
       function ()
-        terminal:runfile()
-        terminal:toggle()
+        bar_run:runfile()
+        bar_run:toggle()
       end,
       "Run file",
     },
@@ -467,7 +414,7 @@ M.nvterm = {
     },
     ["\\"] = {
       function()
-        terminal:toggle()
+        bar_run:toggle()
       end,
     },
 

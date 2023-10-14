@@ -108,6 +108,19 @@ local plugins = {
   --   "NvChad/nvterm",
   --   lazy = false
   -- },
+  {
+    "princejoogie/dir-telescope.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("dir-telescope").setup({
+        -- these are the default options set
+        hidden = true,
+        no_ignore = false,
+        show_preview = true,
+      })
+    end,
+  },
 
   {
     'Wansmer/treesj',

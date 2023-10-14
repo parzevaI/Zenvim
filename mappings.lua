@@ -34,6 +34,13 @@ end
 local bar_run = require("custom.configs.bar_run")
 
 
+local function Numbers()
+  local regex1 = "call search('\\v\\d([^0-9\\.1]|$)', 'cW')"
+  vim.cmd(regex1)
+  vim.cmd("normal! v")
+  local regex2 = "call search('\\v(^|[^0-9\\.]\\d)', 'becW')"
+  vim.cmd(regex2)
+end
 
 
 -- keymaps
@@ -157,6 +164,10 @@ M.general = {
 
     -- TreeSJ
     ["E"] = { "<cmd>TSJToggle<CR>", "Toggle block collapse" },
+
+    -- Faster indent (just use visual mode for more complex ones, saves keypresses in the long run)
+    [">"] = { ">>", "Indent" },
+    ["<"] = { "<<", "Unindent" },
   },
   v = {
     -- ["K"] = { "6k", "move up more" },
@@ -203,7 +214,7 @@ M.macros = {
   },
 }
 
-M.edit = {
+M.objects = {
   n = {
     -- propterty object
     ["cip"] = { "0f:ct;: ", "Change in property" },
@@ -214,6 +225,27 @@ M.edit = {
     ["dap"] = { "dd", "Delete around property" },
     ["vip"] = { "0f:<right>vt;", "Delete in property" },
     ["vap"] = { "^v$", "Delete around property" },
+
+    ["cin"] = {
+      function()
+        Numbers()
+        vim.cmd("normal! c")
+      end,
+      "Change inner number",
+    },
+  },
+
+  o = {
+    ["in"] = { "vin", "inner number" },
+  },
+
+  v = {
+    ["in"] = {
+      function()
+        Numbers()
+      end,
+      "In object",
+    },
   },
 }
 
@@ -277,6 +309,7 @@ M.telescope = {
     ["<leader>fc"] = { "<cmd>Telescope find_files search_dirs=~/.config/nvim/lua/custom/.<CR>", "Find config"},
     ["<leader>fW"] = { "<cmd>Telescope live_grep search_dirs=~<CR>", "BIG grep"},
     ["<leader>ft"] = { "<cmd>Telescope terms<CR>", "Find terms"},
+    ["<leader>fd"] = { "<cmd>FileInDirectory<CR>", "Find directories"},
   },
 }
 

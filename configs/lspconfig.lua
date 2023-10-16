@@ -64,6 +64,13 @@ lspconfig.rust_analyzer.setup {
   },
 }
 
+lspconfig.tailwindcss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {"svelte", "html"}
+}
+
+
 -- lspconfig.jdlts.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities,

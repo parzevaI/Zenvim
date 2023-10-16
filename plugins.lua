@@ -247,6 +247,10 @@ local plugins = {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
+      -- {
+      --   "roobert/tailwindcss-colorizer-cmp.nvim",
+      --   config = true,
+      -- },
       {
         -- snippet plugin
         "L3MON4D3/LuaSnip",
@@ -423,6 +427,15 @@ local plugins = {
         },
       }
     end,
+  },
+
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {
+      user_default_options = {
+        tailwind = true,
+      }
+    }
   },
 
   -- {

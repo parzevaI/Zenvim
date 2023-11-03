@@ -77,6 +77,9 @@ M.disabled = {
     ["<C-j>"] = "",
 
     ["yip"] = "",
+
+    -- ["<tab>"] = "",
+    -- ["<s-tab>"] = "",
   },
 
   v = {
@@ -91,6 +94,11 @@ M.disabled = {
 
 M.general = {
   n = {
+    -- switch buffers
+    ["<tab>"] = { "<cmd>bn<cr>", "Buffer next" },
+    ["<s-tab>"] = { "<cmd>bp<cr>", "Buffer previous" },
+
+
     -- [";"] = { ":", "enter command mode", opts = { nowait = true } },
     -- ["K"] = { "6k", "move up more" },
     -- ["J"] = { "6j", "move down more" },
@@ -144,7 +152,7 @@ M.general = {
 
     ["<leader>lt"] = { "<cmd>TailwindColorsToggle<CR> ", "Toggle tailwind color lsp" },
 
-    ["<S-CR>"] = { "ggVG", "Select all" },
+    ["<C-a>"] = { "ggVG", "Select all" },
 
     ["r<S-Space>"] = { "r_", "Underscore shortcut in single character replace" },
     ["r<C-p>"] = { "vp", "Underscore shortcut in single character replace" },

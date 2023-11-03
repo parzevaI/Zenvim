@@ -85,5 +85,5 @@ lspconfig.tailwindcss.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities,
 --   filetypes = {"java"},
---   cmd = { 'jdtls' },
+--   cmd = { "jdtls", "-configuration", "/home/user/.cache/jdtls/config", "-data", "/home/user/.cache/jdtls/workspace" }
 -- }

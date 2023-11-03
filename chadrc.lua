@@ -18,8 +18,15 @@ M.ui = {
   },
 
   statusline ={
-    theme = "minimal",
+    theme = "minimal"
   },
+
+
+  tabufline = {
+    enabled = false,
+  },
+
+  transparency = true,
 
 
   -- nvdash (dashboard)
@@ -35,7 +42,7 @@ M.ui = {
     --   "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄",
     --   "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █",
     --   "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █",
-    --   "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ",
+   --   "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ",
     -- },
 
     header = {

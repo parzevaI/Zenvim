@@ -51,7 +51,7 @@ M.mason = {
     "rust-analyzer",
 
     -- Java
-    -- "jdtls",
+    "jdtls",
   },
 }
 

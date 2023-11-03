@@ -30,84 +30,21 @@ local plugins = {
   --   ft = "java",
   -- },
 
-  -- {
-  --   'altermo/ultimate-autopair.nvim',
-  --   event={'InsertEnter','CmdlineEnter'},
-  --   branch='v0.6',
-  --   opts={
-  --   },
 
   -- {
-  --   "axelvc/template-string.nvim",
-  --   event = "VeryLazy",
+  --   "startup-nvim/startup.nvim",
+  --   lazy = false,
+  --   requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
   --   config = function()
-  --     require('template-string').setup({
-  --       filetypes = { 'html', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'python' }, -- filetypes where the plugin is active
-  --       jsx_brackets = true, -- must add brackets to jsx attributes
-  --       remove_template_string = false, -- remove backticks when there are no template string
-  --       restore_quotes = {
-  --         -- quotes used when "remove_template_string" option is enabled
-  --         normal = [[']],
-  --         jsx = [["]],
-  --       },
-  --     })
-  --   end,
+  --     require"startup".setup(require"configs.startup_nvim")
+  --   end
   -- },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    event = "BufEnter",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
 
-  -- {
-  --   "nvim-treesitter/nvim-treesitter-textobjects",
-  --   lazy = true,
-  --   dependencies = "nvim-treesitter/nvim-treesitter",
-  --   config = function()
-  --     require'nvim-treesitter.configs'.setup({
-  --       textobjects = {
-  --         select = {
-  --           enable = true,
-  --
-  --           -- Automatically jump forward to textobj, similar to targets.vim
-  --           lookahead = true,
-  --
-  --           keymaps = {
-  --             -- You can use the capture groups defined in textobjects.scm
-  --             ["af"] = "@function.outer",
-  --             ["if"] = "@function.inner",
-  --             ["ac"] = "@class.outer",
-  --             -- You can optionally set descriptions to the mappings (used in the desc parameter of
-  --             -- nvim_buf_set_keymap) which plugins like which-key display
-  --             ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-  --             -- You can also use captures from other query groups like `locals.scm`
-  --             ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
-  --           },
-  --           -- You can choose the select mode (default is charwise 'v')
-  --           --
-  --           -- Can also be a function which gets passed a table with the keys
-  --           -- * query_string: eg '@function.inner'
-  --           -- * method: eg 'v' or 'o'
-  --           -- and should return the mode ('v', 'V', or '<c-v>') or a table
-  --           -- mapping query_strings to modes.
-  --           selection_modes = {
-  --             ['@parameter.outer'] = 'v', -- charwise
-  --             ['@function.outer'] = 'V', -- linewise
-  --             ['@class.outer'] = '<c-v>', -- blockwise
-  --           },
-  --           -- If you set this to `true` (default is `false`) then any textobject is
-  --           -- extended to include preceding or succeeding whitespace. Succeeding
-  --           -- whitespace has priority in order to act similarly to eg the built-in
-  --           -- `ap`.
-  --           --
-  --           -- Can also be a function which gets passed a table with the keys
-  --           -- * query_string: eg '@function.inner'
-  --           -- * selection_mode: eg 'v'
-  --           -- and should return true of false
-  --           include_surrounding_whitespace = true,
-  --         },
-  --       },
-  --     })
-  --   end,
-  -- {
-  --   "NvChad/nvterm",
-  --   lazy = false
-  -- },
   {
     "princejoogie/dir-telescope.nvim",
     event = "VeryLazy",
@@ -195,27 +132,27 @@ local plugins = {
   -- },
 
 
-  {
-    "sustech-data/wildfire.nvim",
-    event = "VeryLazy",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("wildfire").setup()
-    end,
-    opts = {
-      surrounds = {
-        { "(", ")" },
-        { "{", "}" },
-        { "<", ">" },
-        { "[", "]" },
-      },
-      keymaps = {
-        init_selection = "<CR>",
-        node_incremental = "<CR>",
-        node_decremental = "<BS>",
-      },
-    }
-  },
+  -- {
+  --   "sustech-data/wildfire.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = { "nvim-treesitter/nvim-treesitter" },
+  --   config = function()
+  --     require("wildfire").setup()
+  --   end,
+  --   opts = {
+  --     surrounds = {
+  --       { "(", ")" },
+  --       { "{", "}" },
+  --       { "<", ">" },
+  --       { "[", "]" },
+  --     },
+  --     keymaps = {
+  --       init_selection = "<CR>",
+  --       node_incremental = "<CR>",
+  --       node_decremental = "<BS>",
+  --     },
+  --   }
+  -- },
 
   {
     "michaelb/sniprun",
@@ -347,6 +284,80 @@ local plugins = {
         "c",
         "zig"
       },
+      highlight = { enable = true },
+      indent = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = '<c-space>',
+          node_incremental = '<c-space>',
+          scope_incremental = '<c-s>',
+          node_decremental = '<c-backspace>',
+        },
+      },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+          keymaps = {
+            -- You can use the capture groups defined in textobjects.scm
+            ['aa'] = '@parameter.outer',
+            ['ia'] = '@parameter.inner',
+            ['af'] = '@function.outer',
+            ['if'] = '@function.inner',
+            ['ao'] = '@class.outer',
+            ['io'] = '@class.inner',
+            ['ii'] = '@conditional.inner',
+            ['ai'] = '@conditional.outer',
+            ['il'] = '@loop.inner',
+            ['al'] = '@loop.outer',
+            ['ic'] = '@comment.inner',
+            ['ac'] = '@comment.outer',
+            ['iv'] = '@assignment.rhs',
+            ['av'] = '@assignment.outer',
+            ['ir'] = '@return.inner',
+            ['ar'] = '@return.inner',
+            ['in'] = '@number.inner',
+            ['ah'] = '@call.outer',
+            ['ih'] = '@call.inner',
+          },
+        },
+        move = {
+          enable = true,
+          set_jumps = true, -- whether to set jumps in the jumplist
+          goto_next_start = {
+            [']m'] = '@function.outer',
+            [']]'] = '@class.outer',
+          },
+          goto_next_end = {
+            [']M'] = '@function.outer',
+            [']['] = '@class.outer',
+          },
+          goto_previous_start = {
+            ['[m'] = '@function.outer',
+            ['[['] = '@class.outer',
+          },
+          goto_previous_end = {
+            ['[M'] = '@function.outer',
+            ['[]'] = '@class.outer',
+          },
+          -- goto_next = {
+          --   [']i'] = "@conditional.inner",
+          -- },
+          -- goto_previous = {
+          --   ['[i'] = "@conditional.inner",
+          -- }
+        },
+        swap = {
+          enable = true,
+          swap_next = {
+            ['<leader>h'] = '@parameter.inner',
+          },
+          swap_previous = {
+            ['<leader>H'] = '@parameter.inner',
+          },
+        },
+      },
     },
   },
 
@@ -465,6 +476,12 @@ local plugins = {
     "nvim-tree/nvim-tree.lua",
     enabled = false
   },
+
+  -- {
+  --   "nvchad/nvdash.lua",
+  --   enabled = false
+  -- },
+
 
   -- All NvChad plugins are lazy-loaded by default
   -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`

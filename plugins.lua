@@ -30,15 +30,26 @@ local plugins = {
   --   ft = "java",
   -- },
 
-
   -- {
-  --   "startup-nvim/startup.nvim",
+  --   'echasnovski/mini.starter',
   --   lazy = false,
-  --   requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
+  --   version = "*",
   --   config = function()
-  --     require"startup".setup(require"configs.startup_nvim")
+  --     require('mini.starter').setup({
+  --       header = "",
+  --       footer = "",
+  --     })
   --   end
   -- },
+
+
+  {
+    "ThePrimeagen/harpoon",
+    event = "BufEnter",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+
+
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     event = "BufEnter",

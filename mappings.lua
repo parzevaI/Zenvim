@@ -94,9 +94,36 @@ M.disabled = {
 
 M.general = {
   n = {
+    -- add file to harpoon
+    ["<Leader>x"] = {
+      function ()
+        require("harpoon.ui").toggle_quick_menu()
+        vim.cmd("%g/" + vim.fn.expand("%") + "/d")
+        require("harpoon.ui").toggle_quick_menu()
+        vim.cmd("bd")
+      end,
+      "Close current buffer",
+    },
+
     -- switch buffers
-    ["<tab>"] = { "<cmd>bn<cr>", "Buffer next" },
-    ["<s-tab>"] = { "<cmd>bp<cr>", "Buffer previous" },
+    ["<tab>"] = {
+      function ()
+        require("harpoon.ui").nav_next()
+      end,
+      "Buffer next",
+    },
+    ["<s-tab>"] = {
+      function ()
+        require("harpoon.ui").nav_prev()
+      end,
+      "Buffer previous",
+    },
+
+    -- ["<tab>"] = { "<cmd>bn<cr>", "Buffer next" },
+    -- ["<s-tab>"] = { "<cmd>bn<cr>", "Buffer previous" },
+
+
+
 
 
     -- [";"] = { ":", "enter command mode", opts = { nowait = true } },
@@ -106,6 +133,9 @@ M.general = {
     ["L"] = { "w", "move right more" },
     ["K"] = { "3k", "move up more" },
     ["J"] = { "3j", "move down more" },
+
+    ["∆"] = { "3jzz", "move down more and center" },
+    ["˚"] = { "3kzz", "move down more and center" },
 
     -- Probably dumb mappings but this is my config so what the hell
     ["w"] = { ":w<CR>", "Quick save" },
@@ -152,7 +182,7 @@ M.general = {
 
     ["<leader>lt"] = { "<cmd>TailwindColorsToggle<CR> ", "Toggle tailwind color lsp" },
 
-    ["<C-a>"] = { "ggVG", "Select all" },
+    ["<C-s>"] = { "ggVG", "Select all" },
 
     ["r<S-Space>"] = { "r_", "Underscore shortcut in single character replace" },
     ["r<C-p>"] = { "vp", "Underscore shortcut in single character replace" },
@@ -233,14 +263,6 @@ M.objects = {
     ["dap"] = { "dd", "Delete around property" },
     ["vip"] = { "0f:<right>vt;", "Delete in property" },
     ["vap"] = { "^v$", "Delete around property" },
-
-    ["cin"] = {
-      function()
-        Numbers()
-        vim.cmd("normal! c")
-      end,
-      "Change inner number",
-    },
   },
 
   o = {

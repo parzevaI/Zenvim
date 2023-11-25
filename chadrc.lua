@@ -31,7 +31,7 @@ M.ui = {
 
   -- nvdash (dashboard)
   nvdash = {
-    load_on_startup = true,
+    load_on_startup = false,
 
     -- header = {
     --   "           ▄ ▄                   ",
@@ -43,6 +43,10 @@ M.ui = {
     --   "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █",
     --   "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █",
    --   "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ",
+    -- },
+
+    -- header = {
+    --   "                                         ",
     -- },
 
     header = {
@@ -60,6 +64,22 @@ M.ui = {
       "        ▀█▀█      ▀██▄██▄▄▀▀████▄    ",
       "         ▀██                 ▀▀▀▀    ",
     },
+
+    -- header = {
+    --   "███▀▀▀▀█████████████████  ▀██████████",
+    --   "███▄    ▀▀▄▄  ▄  ▀██████ ▀ ▀█████████",
+    --   "█████▀▄▄█▀▀  ▀██  ███████ ▀▄▄▀▀██████",
+    --   "███▀▄█▀▀   ▄▄█▀ ▄█████████▄ ▀▀  ▀████",
+    --   "██▀▄███▄██▀▀ ▄▄███████████████▄▄  ███",
+    --   "█▀ █  ▀▀▄▄    ██████████████████ ▄ ██",
+    --   "█ █▀ ▄▄████▄ ▄████████▀ ▀████▀▀ ▄█ ██",
+    --   "█ ▀ ██████████████████    ▀▀▄▄  █ ▄██",
+    --   "██  ▀▀███████████████▀▀ ▄▄██▀███▀▄███",
+    --   "███▄  ▄▄▀▀█████████▀ ▄█▀▀   ▄▄█▀▄████",
+    --   "█████▄▄▀▀▄ ███████  ██▄  ▄▄█▀▀▄██████",
+    --   "████████▄ ▄ ██████▄  ▀  ▀▀▄▄    ▀████",
+    --   "█████████▄  █████████████████▄▄▄▄████",
+    -- },
 
     -- header = {
     --   "█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█ ",
@@ -81,12 +101,12 @@ M.ui = {
     -- 32 wide
 
     buttons = {
-      { "  Find File", "Space     ", "Telescope find_files" },
-      { "󰈚  Recent Files", "Leader f o", "Telescope oldfiles" },
-      { "󰈭  Find Word", "Leader f w", "Telescope live_grep" },
-      { "  Bookmarks", "Leader m a", "Telescope marks" },
-      { "  Themes", "Leader t H", "Telescope themes" },
-      { "  Mappings", "Leader c h", "NvCheatsheet" },
+      -- { "  Find File", "Space     ", "Telescope find_files" },
+      -- { "󰈚  Recent Files", "Leader f o", "Telescope oldfiles" },
+      -- { "󰈭  Find Word", "Leader f w", "Telescope live_grep" },
+      -- { "  Bookmarks", "Leader m a", "Telescope marks" },
+      -- { "  Themes", "Leader t H", "Telescope themes" },
+      -- { "  Mappings", "Leader c h", "NvCheatsheet" },
     },
   },
 }

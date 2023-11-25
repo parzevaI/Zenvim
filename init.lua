@@ -7,6 +7,16 @@ autocmd("VimResized", {
   command = "tabdo wincmd =",
 })
 
+-- autocmd("BufEnter", {
+--   command = 'lua require("harpoon.mark").add_file()'
+-- })
+
+-- could clear out harpoon on vimenter
+-- autocmd("VimEnter", {
+--   pattern = "*",
+--   command = 'Telescope find_files'
+-- })
+
 -------------------------------------- options ------------------------------------------
 opt.relativenumber = true
 opt.wrap = false

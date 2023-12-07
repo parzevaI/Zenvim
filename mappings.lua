@@ -106,21 +106,9 @@ M.general = {
     },
 
     -- switch buffers
-    ["<tab>"] = {
-      function ()
-        require("harpoon.ui").nav_next()
-      end,
-      "Buffer next",
-    },
-    ["<s-tab>"] = {
-      function ()
-        require("harpoon.ui").nav_prev()
-      end,
-      "Buffer previous",
-    },
 
-    -- ["<tab>"] = { "<cmd>bn<cr>", "Buffer next" },
-    -- ["<s-tab>"] = { "<cmd>bn<cr>", "Buffer previous" },
+    ["<tab>"] = { "<cmd>bn<cr>", "Buffer next" },
+    ["<s-tab>"] = { "<cmd>bp<cr>", "Buffer previous" },
 
 
 
